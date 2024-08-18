@@ -1,4 +1,9 @@
-import { app, HttpResponseInit } from '@azure/functions'
+import {
+  app,
+  HttpRequest,
+  HttpResponseInit,
+  InvocationContext,
+} from '@azure/functions'
 
 import { webflow } from '../webflow-sdk'
 import axios from 'axios'
@@ -7,6 +12,7 @@ import {
   SAP_API_URL,
   SAP_API_USERNAME,
   WEBFLOW_SITE_ID,
+  TRIGGER_SYNC_TOKEN,
 } from '../const'
 import { getSiteLocalesMap } from '../helpers'
 import { normalizeSapData } from '../normalizing_sap'
@@ -17,9 +23,18 @@ import { webflowPublishRequest } from '../webflow_requests'
 
 import type { RawSapJob } from '../types'
 
-const wf_sap_syncer = async (): // request: HttpRequest,
-// context: InvocationContext
-Promise<HttpResponseInit> => {
+const wf_sap_syncer = async (
+  request: HttpRequest,
+  context: InvocationContext
+): Promise<HttpResponseInit> => {
+  const requestToken = request.params.token
+  if (requestToken !== TRIGGER_SYNC_TOKEN)
+    return {
+      status: 403,
+      body: JSON.stringify({
+        message: 'No valid token provided',
+      }),
+    }
   try {
     const sapResponse = await axios.get(SAP_API_URL, {
       auth: {
@@ -117,7 +132,7 @@ Promise<HttpResponseInit> => {
         newPositionTypes,
       })
 
-    console.log({ needsPublishing })
+    context.log({ needsPublishing })
 
     if (needsPublishing) {
       const status = await webflowPublishRequest(site)

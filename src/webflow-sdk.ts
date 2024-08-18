@@ -1,4 +1,4 @@
-import { WEBFLOW_TOKEN } from "./const";
+import { WEBFLOW_API_TOKEN } from "./const";
 import { WebflowClient } from "webflow-api";
 
-export const webflow = new WebflowClient({ accessToken: WEBFLOW_TOKEN })
+export const webflow = new WebflowClient({ accessToken: WEBFLOW_API_TOKEN })

@@ -8,21 +8,20 @@
 //   "&$filter=boardId eq '_external'&$format=JSON"
 
 // Test:
-export const COMPANY_ID = 'bestsecretT1'
-export const BASE_URL = 'https://api55preview.sapsf.eu'
-export const WEBFLOW_SITE_ID = '66bf4add5d7af33e2f52aa9a'
-export const WEBFLOW_TOKEN =
-  'f9ec2ad24d6b8ee739cecc75df827cd565122746a58779c3782e1622b703300b'
-// const TEST_JOB_ID = '1560'
-// const LAST_QUERY_PART = `&$filter=boardId eq '_external' and jobReqId eq '${TEST_JOB_ID}'&$format=JSON`
+export const SAP_COMPANY_ID = process.env["SAP_COMPANY_ID"]
+export const SAP_BASE_URL = process.env["SAP_BASE_URL"]
+export const SAP_API_USER = process.env['SAP_API_USER']
+export const SAP_API_PASSWORD = process.env["SAP_API_PASSWORD"]
+export const WEBFLOW_SITE_ID = process.env["WEBFLOW_SITE_ID"]
+export const WEBFLOW_API_TOKEN = process.env["WEBFLOW_API_TOKEN"]
+export const TRIGGER_SYNC_TOKEN = process.env['TRIGGER_SYNC_TOKEN']
+export const SAP_API_USERNAME = `${SAP_API_USER}@${SAP_COMPANY_ID}`
+
+export const REQUEST_DELAY = 1500
 export const LAST_QUERY_PART =
   "&$filter=boardId eq '_external' and (postingStatus eq 'Success' or postingStatus eq 'Updated')&$format=JSON"
 
-export const SAP_API_USERNAME = `APIREC@${COMPANY_ID}`
-export const SAP_API_PASSWORD = 'NewGenCareers2024!'
-export const REQUEST_DELAY = 1500
-
-export const SAP_API_URL = `${BASE_URL}/odata/v2/JobRequisitionPosting
+export const SAP_API_URL = `${SAP_BASE_URL}/odata/v2/JobRequisitionPosting
 ?$select=
 boardId,
 jobReqId,
@@ -61,5 +60,5 @@ export const ALLOWED_HTML_TAGS = [
 ]
 export const LOCALES = { default: 'en_US', allowed: ['en_US', 'de_DE'] }
 export const webflowHeaders = {
-  headers: { Authorization: `Bearer ${WEBFLOW_TOKEN}` },
+  headers: { Authorization: `Bearer ${WEBFLOW_API_TOKEN}` },
 }
