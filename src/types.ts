@@ -44,7 +44,7 @@ export type NormalizedSapJob = {
 export type WebflowItemFieldData = {
   name: string
   sapid: string
-  updated: string
+  date: string
   'departments-reference'?: string[]
   'locations-reference'?: string[]
   'positiontypes-reference'?: string[]

@@ -175,7 +175,6 @@ export const handleWebflowSync = async ({
   }
 
   const currentWebflowItems = await getAllWebflowItems(webflowCollection)
-
   const webflowItemsToArchive = getWebflowItemsToArchive(
     sapItems,
     currentWebflowItems

@@ -20,7 +20,7 @@ const wf_sap_syncer_timer_trigger = async (
 }
 
 app.timer('wf_sap_syncer_timer_trigger', {
-  schedule: '0 */1 * * * *',
+  schedule: '0 */3 * * * *',
   handler: wf_sap_syncer_timer_trigger,
 })
 

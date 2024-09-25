@@ -73,7 +73,6 @@ const wf_sap_syncer = async (
       WEBFLOW_SITE_ID
     )
     const allCollections = allWebflowCollectionsReponse?.collections
-
     if (!allCollections) {
       return {
         status: 500,
@@ -93,19 +92,28 @@ const wf_sap_syncer = async (
       }
     }
 
-    const { newCurrentItems: newDepartments } = await handleWebflowSync({
+    const {
+      newCurrentItems: newDepartments,
+      needsPublishing: needsDepartmentPublish,
+    } = await handleWebflowSync({
       collectionType: 'departments',
       normalizedSapData,
       allCollections,
       webflowLocalesMap,
     })
-    const { newCurrentItems: newLocations } = await handleWebflowSync({
+    const {
+      newCurrentItems: newLocations,
+      needsPublishing: needsLocationPublish,
+    } = await handleWebflowSync({
       collectionType: 'locations',
       normalizedSapData,
       allCollections,
       webflowLocalesMap,
     })
-    const { newCurrentItems: newPositionTypes } = await handleWebflowSync({
+    const {
+      newCurrentItems: newPositionTypes,
+      needsPublishing: needsPositionPublish,
+    } = await handleWebflowSync({
       collectionType: 'positiontypes',
       normalizedSapData,
       allCollections,
@@ -121,7 +129,7 @@ const wf_sap_syncer = async (
       }
     }
 
-    const { newCurrentItems: newJobs, needsPublishing } =
+    const { newCurrentItems: newJobs, needsPublishing: needsJobPublish } =
       await handleWebflowSync({
         collectionType: 'jobs',
         normalizedSapData,
@@ -132,9 +140,19 @@ const wf_sap_syncer = async (
         newPositionTypes,
       })
 
-    context.log({ needsPublishing })
+    context.log({
+      needsJobPublish,
+      needsLocationPublish,
+      needsPositionPublish,
+      needsDepartmentPublish,
+    })
 
-    if (needsPublishing) {
+    if (
+      needsJobPublish ||
+      needsDepartmentPublish ||
+      needsLocationPublish ||
+      needsPositionPublish
+    ) {
       const status = await webflowPublishRequest(site)
 
       if (!status) {

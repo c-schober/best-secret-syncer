@@ -1,4 +1,4 @@
-import { SAP_BASE_URL, SAP_COMPANY_ID, LOCALES } from "./const"
+import { SAP_APPLY_BASE_URL, SAP_COMPANY_ID, LOCALES } from './const'
 import { nonNullable } from "./guards"
 import { cleanupHtmlJson } from "./helpers"
 import type { LocaleData, NormalizedSapJob, RawSapFilterData, RawSapJob, RawSapLocalizedTextData, RawSapLocationData, SapTextElement, SapTextType, WebflowLocale } from "./types"
@@ -184,7 +184,7 @@ export const getFilterLabels = (
 }
 
 export const getApplyUrl = (jobId: string) => {
-  return `${SAP_BASE_URL}/career?&company=${SAP_COMPANY_ID}&career_ns=job_application&career_job_req_id=${jobId}&jobPipeline=Direct`
+  return `${SAP_APPLY_BASE_URL}/career?&company=${SAP_COMPANY_ID}&career_ns=job_application&career_job_req_id=${jobId}&jobPipeline=Direct`
 }
 
 export const normalizeSapData = (

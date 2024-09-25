@@ -32,7 +32,7 @@ export const needsUpdating = (
     (wf) => wf.fieldData.sapid === sapItem.sapid
   )
 
-  const webflowUpdated = relatedWebflowItem?.fieldData.updated
+  const webflowUpdated = relatedWebflowItem?.fieldData.date
 
   return sapUpdated !== webflowUpdated
 }

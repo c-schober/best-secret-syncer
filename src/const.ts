@@ -10,6 +10,7 @@
 // Test:
 export const SAP_COMPANY_ID = process.env["SAP_COMPANY_ID"]
 export const SAP_BASE_URL = process.env["SAP_BASE_URL"]
+export const SAP_APPLY_BASE_URL = process.env['SAP_APPLY_BASE_URL']
 export const SAP_API_USER = process.env['SAP_API_USER']
 export const SAP_API_PASSWORD = process.env["SAP_API_PASSWORD"]
 export const WEBFLOW_SITE_ID = process.env["WEBFLOW_SITE_ID"]
@@ -19,7 +20,7 @@ export const SAP_API_USERNAME = `${SAP_API_USER}@${SAP_COMPANY_ID}`
 
 export const REQUEST_DELAY = 1500
 export const LAST_QUERY_PART =
-  "&$filter=boardId eq '_external' and (postingStatus eq 'Success' or postingStatus eq 'Updated')&$format=JSON"
+  "&$filter=boardId eq '_external' and (postingStatus eq 'Success' or postingStatus eq 'Updated') and jobRequisition/status/externalCode eq 'Open' &$format=JSON"
 
 export const SAP_API_URL = `${SAP_BASE_URL}/odata/v2/JobRequisitionPosting
 ?$select=

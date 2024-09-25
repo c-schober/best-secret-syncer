@@ -60,7 +60,7 @@ export const prepareWebflowJobFieldData = ({
   const fieldData = {
     sapid: sapItem.sapid,
     name: sapItem.locales[locale] || sapItem.default,
-    updated: sapItem.updated,
+    date: sapItem.updated,
   } as WebflowItemFieldData
 
   if (newDepartments) {
