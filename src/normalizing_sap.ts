@@ -234,7 +234,7 @@ export const normalizeSapData = (
       updated
     ),
     positiontypes: getFilterLabels(
-      rawSapJob.jobRequisition.filter3.results,
+      rawSapJob.jobRequisition.mfield3.results,
       updated
     ),
 

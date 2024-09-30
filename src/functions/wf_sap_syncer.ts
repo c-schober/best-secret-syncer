@@ -53,9 +53,9 @@ const wf_sap_syncer = async (
         }),
       }
     }
-
+    
     const normalizedSapData = sapData.map(normalizeSapData).filter(nonNullable)
-
+    
     const site = await webflow.sites.get(WEBFLOW_SITE_ID)
 
     const webflowLocalesMap = await getSiteLocalesMap(site)

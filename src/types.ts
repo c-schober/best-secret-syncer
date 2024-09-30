@@ -22,7 +22,7 @@ export type RawSapJob = {
     filter1: {
       results: RawSapFilterData[]
     }
-    filter3: {
+    mfield3: {
       results: RawSapFilterData[]
     }
   }

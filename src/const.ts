@@ -38,13 +38,13 @@ jobRequisition/location_objlist/value/nameTranslationNav,
 jobRequisition/filter1/picklistLabels/locale,
 jobRequisition/filter1/picklistLabels/label,
 jobRequisition/filter1/picklistLabels/optionId,
-jobRequisition/filter3/picklistLabels/locale,
-jobRequisition/filter3/picklistLabels/label,
-jobRequisition/filter3/picklistLabels/optionId,
+jobRequisition/mfield3/picklistLabels/locale,
+jobRequisition/mfield3/picklistLabels/label,
+jobRequisition/mfield3/picklistLabels/optionId,
 &$expand=jobRequisition,
 jobRequisition/jobReqLocale,
+jobRequisition/mfield3/picklistLabels,
 jobRequisition/filter1/picklistLabels,
-jobRequisition/filter3/picklistLabels,
 jobRequisition/location_objlist/value/nameTranslationNav
 ${LAST_QUERY_PART}`
 
