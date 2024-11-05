@@ -8,13 +8,13 @@
 //   "&$filter=boardId eq '_external'&$format=JSON"
 
 // Test:
-export const SAP_COMPANY_ID = process.env["SAP_COMPANY_ID"]
-export const SAP_BASE_URL = process.env["SAP_BASE_URL"]
+export const SAP_COMPANY_ID = process.env['SAP_COMPANY_ID']
+export const SAP_BASE_URL = process.env['SAP_BASE_URL']
 export const SAP_APPLY_BASE_URL = process.env['SAP_APPLY_BASE_URL']
 export const SAP_API_USER = process.env['SAP_API_USER']
-export const SAP_API_PASSWORD = process.env["SAP_API_PASSWORD"]
-export const WEBFLOW_SITE_ID = process.env["WEBFLOW_SITE_ID"]
-export const WEBFLOW_API_TOKEN = process.env["WEBFLOW_API_TOKEN"]
+export const SAP_API_PASSWORD = process.env['SAP_API_PASSWORD']
+export const WEBFLOW_SITE_ID = process.env['WEBFLOW_SITE_ID']
+export const WEBFLOW_API_TOKEN = process.env['WEBFLOW_API_TOKEN']
 export const TRIGGER_SYNC_TOKEN = process.env['TRIGGER_SYNC_TOKEN']
 export const SAP_API_USERNAME = `${SAP_API_USER}@${SAP_COMPANY_ID}`
 
@@ -41,12 +41,17 @@ jobRequisition/filter1/picklistLabels/optionId,
 jobRequisition/mfield3/picklistLabels/locale,
 jobRequisition/mfield3/picklistLabels/label,
 jobRequisition/mfield3/picklistLabels/optionId,
+jobRequisition/mfield4/picklistLabels/locale,
+jobRequisition/mfield4/picklistLabels/label,
+jobRequisition/mfield4/picklistLabels/optionId,
 &$expand=jobRequisition,
 jobRequisition/jobReqLocale,
 jobRequisition/mfield3/picklistLabels,
+jobRequisition/mfield4/picklistLabels,
 jobRequisition/filter1/picklistLabels,
 jobRequisition/location_objlist/value/nameTranslationNav
 ${LAST_QUERY_PART}`
+
 
 export const ALLOWED_HTML_TAGS = [
   'h1',

@@ -1,7 +1,17 @@
 import { SAP_APPLY_BASE_URL, SAP_COMPANY_ID, LOCALES } from './const'
-import { nonNullable } from "./guards"
-import { cleanupHtmlJson } from "./helpers"
-import type { LocaleData, NormalizedSapJob, RawSapFilterData, RawSapJob, RawSapLocalizedTextData, RawSapLocationData, SapTextElement, SapTextType, WebflowLocale } from "./types"
+import { nonNullable } from './guards'
+import { cleanupHtmlJson } from './helpers'
+import type {
+  LocaleData,
+  NormalizedSapJob,
+  RawSapFilterData,
+  RawSapJob,
+  RawSapLocalizedTextData,
+  RawSapLocationData,
+  SapTextElement,
+  SapTextType,
+  WebflowLocale,
+} from './types'
 
 export const getModifiedDateTime = (sapDateString: string) => {
   const match = sapDateString.match(/\/Date\((\d+)([+-]\d{4})?\)\//)
@@ -184,7 +194,11 @@ export const getFilterLabels = (
 }
 
 export const getApplyUrl = (jobId: string) => {
-  return `${SAP_APPLY_BASE_URL}/career?&company=${SAP_COMPANY_ID}&career_ns=job_application&career_job_req_id=${jobId}&jobPipeline=Direct`
+  const baseUrl = `${SAP_APPLY_BASE_URL}/career?&company=${SAP_COMPANY_ID}&career_ns=job_application&career_job_req_id=${jobId}&jobPipeline=Direct`
+  return {
+    default: baseUrl,
+    locales: { de: baseUrl + '&lang=de_DE', en: baseUrl + '&lang=en_US' },
+  }
 }
 
 export const normalizeSapData = (
@@ -235,6 +249,10 @@ export const normalizeSapData = (
     ),
     positiontypes: getFilterLabels(
       rawSapJob.jobRequisition.mfield3.results,
+      updated
+    ),
+    flexibility: getFilterLabels(
+      rawSapJob.jobRequisition.mfield4.results,
       updated
     ),
 

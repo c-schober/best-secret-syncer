@@ -37,12 +37,14 @@ export const prepareWebflowJobFieldData = ({
   newDepartments,
   newLocations,
   newPositionTypes,
+  newFlexibilities,
   locale,
 }: {
   sapItem: NormalizedSapJob | SapFilterItem
   newDepartments?: WebflowResponseItem[]
   newLocations?: WebflowResponseItem[]
   newPositionTypes?: WebflowResponseItem[]
+  newFlexibilities?: WebflowResponseItem[]
   locale: WebflowLocale
 }): WebflowItemFieldData => {
   const findReferences = (
@@ -80,9 +82,15 @@ export const prepareWebflowJobFieldData = ({
       'positiontypes'
     )
   }
+  if (newFlexibilities) {
+    fieldData['flexibility-reference'] = findReferences(
+      newFlexibilities,
+      'flexibility'
+    )
+  }
 
   if ('applyUrl' in sapItem && sapItem.applyUrl) {
-    fieldData['apply-url'] = sapItem.applyUrl
+    fieldData['apply-url'] = sapItem.applyUrl.locales[locale]
   }
 
   if ('descriptionHeader' in sapItem && sapItem.descriptionHeader) {

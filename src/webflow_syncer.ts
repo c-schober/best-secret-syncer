@@ -32,6 +32,7 @@ const handleCreateItem = async ({
   newDepartments,
   newPositionTypes,
   newLocations,
+  newFlexibilities,
 }: {
   itemToCreate: SapFilterItem | NormalizedSapJob
   webflowCollectionId: string
@@ -40,6 +41,7 @@ const handleCreateItem = async ({
   newDepartments: WebflowResponseItem[] | undefined
   newPositionTypes: WebflowResponseItem[] | undefined
   newLocations: WebflowResponseItem[] | undefined
+  newFlexibilities: WebflowResponseItem[] | undefined
 }) => {
   if (!itemToCreate.sapid || !itemToCreate.default || !itemToCreate.locales) {
     return
@@ -76,6 +78,7 @@ const handleCreateItem = async ({
         newDepartments,
         newPositionTypes,
         newLocations,
+        newFlexibilities,
       })
 
       return [
@@ -152,6 +155,7 @@ export const handleWebflowSync = async ({
   newDepartments,
   newLocations,
   newPositionTypes,
+  newFlexibilities,
 }: {
   collectionType: CollectionType
   normalizedSapData: NormalizedSapJob[]
@@ -160,6 +164,7 @@ export const handleWebflowSync = async ({
   newDepartments?: WebflowResponseItem[]
   newLocations?: WebflowResponseItem[]
   newPositionTypes?: WebflowResponseItem[]
+  newFlexibilities?: WebflowResponseItem[]
 }): Promise<{
   newCurrentItems: WebflowResponseItem[]
   needsPublishing: boolean
@@ -222,6 +227,7 @@ export const handleWebflowSync = async ({
             newDepartments,
             newPositionTypes,
             newLocations,
+            newFlexibilities
           }),
         },
       } as WebflowUpdateData
@@ -251,6 +257,7 @@ export const handleWebflowSync = async ({
       newDepartments,
       newPositionTypes,
       newLocations,
+      newFlexibilities,
     })
 
     await handleCreateItem({
@@ -261,6 +268,7 @@ export const handleWebflowSync = async ({
       newDepartments,
       newPositionTypes,
       newLocations,
+      newFlexibilities,
     })
     console.log('created item', item)
     await wait(REQUEST_DELAY)

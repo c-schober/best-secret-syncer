@@ -25,6 +25,9 @@ export type RawSapJob = {
     mfield3: {
       results: RawSapFilterData[]
     }
+    mfield4: {
+      results: RawSapFilterData[]
+    }
   }
 }
 export type NormalizedSapJob = {
@@ -39,7 +42,8 @@ export type NormalizedSapJob = {
   locations: SapFilterItem[]
   positiontypes: SapFilterItem[]
   departments: SapFilterItem[]
-  applyUrl: string
+  flexibility: SapFilterItem[]
+  applyUrl: SapTextElement
 }
 export type WebflowItemFieldData = {
   name: string
@@ -60,7 +64,7 @@ export type WebflowResponseItem = {
   id: string
   fieldData: WebflowItemFieldData
 }
-export type FilterType = 'departments' | 'locations' | 'positiontypes'
+export type FilterType = 'departments' | 'locations' | 'positiontypes' | 'flexibility'
 export type CollectionType = FilterType | 'jobs'
 export type SapTextType =
   | 'externalJobDescription'

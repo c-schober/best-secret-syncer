@@ -53,9 +53,9 @@ const wf_sap_syncer = async (
         }),
       }
     }
-    
+
     const normalizedSapData = sapData.map(normalizeSapData).filter(nonNullable)
-    
+
     const site = await webflow.sites.get(WEBFLOW_SITE_ID)
 
     const webflowLocalesMap = await getSiteLocalesMap(site)
@@ -119,8 +119,22 @@ const wf_sap_syncer = async (
       allCollections,
       webflowLocalesMap,
     })
+    const {
+      newCurrentItems: newFlexibilities,
+      needsPublishing: needsFlexibilityPublish,
+    } = await handleWebflowSync({
+      collectionType: 'flexibility',
+      normalizedSapData,
+      allCollections,
+      webflowLocalesMap,
+    })
 
-    if (!newDepartments || !newLocations || !newPositionTypes) {
+    if (
+      !newDepartments ||
+      !newLocations ||
+      !newPositionTypes ||
+      !newFlexibilities
+    ) {
       return {
         status: 500,
         body: JSON.stringify({
@@ -138,6 +152,7 @@ const wf_sap_syncer = async (
         newDepartments,
         newLocations,
         newPositionTypes,
+        newFlexibilities,
       })
 
     context.log({
@@ -145,13 +160,15 @@ const wf_sap_syncer = async (
       needsLocationPublish,
       needsPositionPublish,
       needsDepartmentPublish,
+      needsFlexibilityPublish,
     })
 
     if (
       needsJobPublish ||
       needsDepartmentPublish ||
       needsLocationPublish ||
-      needsPositionPublish
+      needsPositionPublish ||
+      needsFlexibilityPublish
     ) {
       const status = await webflowPublishRequest(site)
 
