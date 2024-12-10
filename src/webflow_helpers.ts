@@ -174,7 +174,6 @@ export const getWebflowItemsToArchive = (
 ) => {
   const validWebflowItems = webflowItems.filter(isItemValid)
   const sapIdsInSapItem = sapItems.map((item) => item.sapid)
-
   const itemsToArchive = validWebflowItems.filter(
     (webflowItem) => !sapIdsInSapItem.includes(webflowItem.fieldData.sapid)
   )

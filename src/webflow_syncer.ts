@@ -178,9 +178,9 @@ export const handleWebflowSync = async ({
   if (!webflowCollection) {
     return { newCurrentItems: [], needsPublishing: false }
   }
-
+  const isLocationType = collectionType === 'locations'
   const currentWebflowItems = await getAllWebflowItems(webflowCollection)
-  const webflowItemsToArchive = getWebflowItemsToArchive(
+  const webflowItemsToArchive = isLocationType ? [] : getWebflowItemsToArchive(
     sapItems,
     currentWebflowItems
   )
@@ -227,7 +227,7 @@ export const handleWebflowSync = async ({
             newDepartments,
             newPositionTypes,
             newLocations,
-            newFlexibilities
+            newFlexibilities,
           }),
         },
       } as WebflowUpdateData
